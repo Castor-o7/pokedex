@@ -1,0 +1,2 @@
+# pokedex
+A JavaScript project
