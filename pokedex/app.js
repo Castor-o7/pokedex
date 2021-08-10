@@ -11,6 +11,9 @@ const pokeHeight = document.querySelector(".poke-height");
 const pokeListItems = document.querySelectorAll('.list-item');
 const leftButton = document.querySelector(".left-button");
 const rightButton = document.querySelector(".right-button");
+const aButton = document.querySelector(".abutton");
+
+
 
 // constants and variables
 const TYPES = [
@@ -84,6 +87,10 @@ const handleRightButtonClick = () => {
     }
 }
 
+const handleLeftAButtonClick = (e) => {
+fetchPokeData (Math.floor((Math.random() * 898) + 1))
+}
+
 const handleListItemClick = (e) => {
  if (!e.target) return;
 
@@ -127,6 +134,7 @@ const fetchPokeData = id => {
  // Adding Event Listeners
  leftButton.addEventListener('click', handleLeftButtonClick);
  rightButton.addEventListener('click', handleRightButtonClick);
+ aButton.addEventListener('click', handleLeftAButtonClick);
  for (const pokeListItem of pokeListItems){
       pokeListItem.addEventListener('click', handleListItemClick)
  }
