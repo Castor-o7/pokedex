@@ -7,7 +7,10 @@ If you're learning JavaScript I highly recommend it! I am looking forward to add
 
 
 
-
+Features:
+- Right Side Screen, all pokemon are displayed/viewable
+- Left Side A button chooses random pokemon (between 1 and 898) 
+- Left Side dPad changes selected pokemon ID 
 
 
 
