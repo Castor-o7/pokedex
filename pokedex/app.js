@@ -12,7 +12,11 @@ const pokeListItems = document.querySelectorAll('.list-item');
 const leftButton = document.querySelector(".left-button");
 const rightButton = document.querySelector(".right-button");
 const aButton = document.querySelector(".abutton");
-
+const dPadUp = document.querySelector(".top")
+const dPadDown = document.querySelector(".bottom")
+const dPadLeft = document.querySelector(".left")
+const dPadRight = document.querySelector(".right")
+let currentPokemon = 249 
 
 
 // constants and variables
@@ -91,6 +95,30 @@ const handleLeftAButtonClick = (e) => {
 fetchPokeData (Math.floor((Math.random() * 898) + 1))
 }
 
+ const handleDPadUpClick = (e) => {
+   if (currentPokemon < 2) {
+     return
+   }
+   fetchPokeData (currentPokemon - 1)
+ }
+
+ const handleDPadDownClick = (e) => {
+   if (currentPokemon > 897){
+     return
+   }
+   fetchPokeData (currentPokemon + 1)
+ }
+
+ const handleDPadLeftClick = (e) => {
+   if (currentPokemon < 11) return
+   fetchPokeData (currentPokemon - 10)
+ }
+
+const handleDPadRightClick = (e) => {
+  if (currentPokemon > 888 ) return
+  fetchPokeData (currentPokemon + 10)
+}
+
 const handleListItemClick = (e) => {
  if (!e.target) return;
 
@@ -107,6 +135,8 @@ const fetchPokeData = id => {
   .then((res) => res.json())
   .then((data) => {
     resetScreen();
+
+   currentPokemon = id
 
     const dataTypes = data["types"];
     const dataFirstType = dataTypes[0];
@@ -135,10 +165,14 @@ const fetchPokeData = id => {
  leftButton.addEventListener('click', handleLeftButtonClick);
  rightButton.addEventListener('click', handleRightButtonClick);
  aButton.addEventListener('click', handleLeftAButtonClick);
+ dPadUp.addEventListener('click', handleDPadUpClick);
+ dPadDown.addEventListener('click', handleDPadDownClick);
+ dPadLeft.addEventListener('click', handleDPadLeftClick);
+ dPadRight.addEventListener('click', handleDPadRightClick);
  for (const pokeListItem of pokeListItems){
       pokeListItem.addEventListener('click', handleListItemClick)
  }
 
  // initialize App
  fetchPokeList('https://pokeapi.co/api/v2/pokemon?offset=0&limit=20')
- fetchPokeData(249)
+ fetchPokeData(currentPokemon)
